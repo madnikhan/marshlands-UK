@@ -1,0 +1,127 @@
+---
+import type { Product } from '../data/products';
+
+interface Props {
+  product: Product;
+  featured?: boolean;
+}
+
+const { product, featured = false } = Astro.props;
+---
+
+<article class:list={['product', { 'product--featured': featured }]}>
+  <div class="product-media">
+    <img src={product.image} alt={product.name} loading="lazy" decoding="async" />
+  </div>
+  <div class="product-body">
+    <div class="product-meta">
+      <span class="eyebrow">{product.category}</span>
+      {
+        product.status === 'coming-soon' ? (
+          <span class="status">Coming soon</span>
+        ) : product.rating ? (
+          <span class="status">{product.rating}★ on Amazon</span>
+        ) : null
+      }
+    </div>
+    <h3>{product.name}</h3>
+    <p>{product.shortDescription}</p>
+    <ul>
+      {product.features.map((feature) => <li>{feature}</li>)}
+    </ul>
+    {
+      product.status === 'live' ? (
+        <a class="btn btn--primary" href={product.amazonUrl} target="_blank" rel="noopener noreferrer">
+          Buy on Amazon
+        </a>
+      ) : (
+        <a class="btn btn--secondary" href="/partner">
+          Enquire about supply
+        </a>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .product {
+    display: grid;
+    gap: 1.5rem;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .product--featured {
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--white) 70%, var(--cream-light));
+    box-shadow: var(--shadow-soft);
+  }
+
+  .product-media {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--cream-light);
+    aspect-ratio: 1;
+    max-width: 18rem;
+  }
+
+  .product--featured .product-media {
+    max-width: none;
+  }
+
+  .product-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .product:hover .product-media img {
+    transform: scale(1.04);
+  }
+
+  .product-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .status {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--maroon);
+  }
+
+  ul {
+    margin: 1rem 0 1.5rem;
+    padding-left: 1.1rem;
+    color: var(--ink-soft);
+  }
+
+  li + li {
+    margin-top: 0.35rem;
+  }
+
+  @media (min-width: 720px) {
+    .product--featured {
+      grid-template-columns: 0.85fr 1.15fr;
+      align-items: center;
+      gap: 1.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-media img {
+      transition: none;
+    }
+
+    .product:hover .product-media img {
+      transform: none;
+    }
+  }
+</style>

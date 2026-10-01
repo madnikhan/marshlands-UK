@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import SectionMedia from '../components/SectionMedia.astro';
+import { company } from '../data/company';
+import { expandingRangeNote, products } from '../data/products';
+---
+
+<BaseLayout
+  title="Our Products"
+  description="Explore MARSHLAND products available on Amazon UK, and learn about our expanding multi-category catalogue of top-selling consumer goods."
+  canonicalPath="/products"
+>
+  <section class="page-banner">
+    <img
+      src="/images/section-categories.jpg"
+      alt=""
+      class="banner-img"
+      loading="eager"
+      decoding="async"
+    />
+    <div class="banner-scrim"></div>
+    <div class="container page-hero reveal">
+      <span class="eyebrow">Our Products</span>
+      <h1>Quality products customers choose</h1>
+      <hr class="divider" />
+      <p class="lead">
+        Shop MARSHLAND on Amazon UK. Our live range begins with carefully selected kitchen tools —
+        and continues to grow across top-selling consumer categories.
+      </p>
+      <div class="btn-group">
+        <a class="btn btn--primary" href={company.amazonStoreUrl} target="_blank" rel="noopener noreferrer">
+          Visit Amazon store
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container reveal">
+      <h2>Current catalogue</h2>
+      <hr class="divider" />
+      <div class="product-list">
+        {products.map((product) => <ProductCard product={product} featured />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container expanding-grid reveal">
+      <SectionMedia
+        src="/images/section-sourcing.jpg"
+        alt="MARSHLAND sourcing new top-selling product categories"
+      />
+      <div>
+        <span class="eyebrow">Expanding range</span>
+        <h2>More categories. More opportunity.</h2>
+        <hr class="divider" />
+        <p class="lead">{expandingRangeNote}</p>
+        <p>
+          If you manufacture or distribute products that align with the MARSHLAND standard — across
+          home, lifestyle, or everyday consumer goods — we would like to hear from you.
+        </p>
+        <div class="btn-group">
+          <a class="btn btn--primary" href="/partner">Partner with MARSHLAND</a>
+          <a class="btn btn--secondary" href="/contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-banner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 22rem;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .banner-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+
+  .banner-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--cream-light) 94%, transparent) 0%,
+      color-mix(in srgb, var(--cream-light) 70%, transparent) 55%,
+      color-mix(in srgb, var(--cream-light) 35%, transparent) 100%
+    );
+  }
+
+  .page-hero {
+    padding: clamp(4rem, 10vw, 6rem) 0 var(--space-lg);
+  }
+
+  .product-list {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .expanding-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .expanding-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

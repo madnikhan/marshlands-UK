@@ -1,0 +1,202 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionMedia from '../components/SectionMedia.astro';
+import { company } from '../data/company';
+---
+
+<BaseLayout
+  title="About"
+  description="Learn about MARSHLAND and Al-Razaq UK Pvt Ltd — a United Kingdom brand focused on quality consumer products and global partnerships across top-selling categories."
+  canonicalPath="/about"
+>
+  <section class="page-banner">
+    <img src="/images/section-about.jpg" alt="" class="banner-img" loading="eager" decoding="async" />
+    <div class="banner-scrim"></div>
+    <div class="container page-hero reveal">
+      <span class="eyebrow">About MARSHLAND</span>
+      <h1>Built in the UK. Growing with purpose.</h1>
+      <hr class="divider" />
+      <p class="lead">
+        MARSHLAND is the trading brand of {company.legalName}, a United Kingdom registered company
+        committed to bringing dependable consumer products into everyday life.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container story-grid reveal">
+      <div>
+        <h2>Our company</h2>
+        <hr class="divider" />
+        <p>
+          From our base in the United Kingdom, we select and bring to market consumer and lifestyle
+          products that prioritise practical performance and lasting quality. Our products are
+          available to customers through our official Amazon store.
+        </p>
+        <p>
+          We believe professionalism starts with clear standards — in the products we sell, the
+          partners we work with, and the way we present ourselves to the world.
+        </p>
+      </div>
+      <div>
+        <h2>Our mission</h2>
+        <hr class="divider" />
+        <p>
+          To offer well-made everyday products that customers trust, while carefully expanding our
+          multi-category catalogue through thoughtful sourcing and responsible manufacturing
+          relationships.
+        </p>
+        <p>
+          As we explore new top-selling product lines and international supply partnerships —
+          including in China and beyond — we remain focused on quality, reliability, and long-term
+          collaboration.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container media-row reveal">
+      <SectionMedia
+        src="/images/section-sourcing.jpg"
+        alt="MARSHLAND expanding product range through careful sourcing"
+      />
+      <div>
+        <span class="eyebrow">Looking ahead</span>
+        <h2>A growing multi-category brand</h2>
+        <hr class="divider" />
+        <p class="lead">
+          We are actively researching new product lines across home, lifestyle, and everyday
+          consumer categories — and building relationships with manufacturers and distributors who
+          share our standards.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container reveal">
+      <span class="eyebrow">Leadership</span>
+      <h2>Directors</h2>
+      <hr class="divider" />
+      <p class="lead">
+        MARSHLAND is led by directors dedicated to building a professional UK brand with a growing
+        international network.
+      </p>
+
+      <div class="directors">
+        {
+          company.directors.map((director) => (
+            <article class="director">
+              <h3>{director.name}</h3>
+              <p class="title">{director.title}</p>
+              <hr class="divider divider--mist" />
+              <p>
+                <a href={director.phoneHref}>{director.phone}</a>
+              </p>
+              <p>
+                <a href={`mailto:${director.email}`}>{director.email}</a>
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--maroon">
+    <div class="container reveal">
+      <h2>Partner with us</h2>
+      <p class="lead">
+        If you manufacture or distribute products that align with the MARSHLAND standard across any
+        strong consumer category, we would welcome a conversation.
+      </p>
+      <div class="btn-group">
+        <a class="btn btn--ghost" href="/partner">Become a Partner</a>
+        <a class="btn btn--ghost" href="/contact">Contact Us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-banner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 22rem;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .banner-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+
+  .banner-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--cream-light) 94%, transparent) 0%,
+      color-mix(in srgb, var(--cream-light) 70%, transparent) 55%,
+      color-mix(in srgb, var(--cream-light) 35%, transparent) 100%
+    );
+  }
+
+  .page-hero {
+    padding: clamp(4rem, 10vw, 6rem) 0 var(--space-lg);
+  }
+
+  .story-grid,
+  .media-row,
+  .directors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .directors {
+    margin-top: 2rem;
+    align-items: stretch;
+  }
+
+  .director {
+    padding: 1.75rem;
+    background: color-mix(in srgb, var(--white) 65%, var(--cream-light));
+    border: 1px solid var(--border);
+  }
+
+  .title {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--maroon);
+  }
+
+  .director a {
+    text-decoration: none;
+    color: var(--ink-soft);
+  }
+
+  .director a:hover {
+    color: var(--maroon);
+  }
+
+  @media (max-width: 800px) {
+    .story-grid,
+    .media-row,
+    .directors {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

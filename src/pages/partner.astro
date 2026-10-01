@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PartnerForm from '../components/PartnerForm.astro';
+import SectionMedia from '../components/SectionMedia.astro';
+import { company } from '../data/company';
+---
+
+<BaseLayout
+  title="Become a Partner"
+  description="Partner with MARSHLAND — UK brand seeking manufacturers, OEM/ODM suppliers, and distributors across top-selling consumer product categories."
+  canonicalPath="/partner"
+>
+  <section class="page-banner">
+    <img src="/images/section-partner.jpg" alt="" class="banner-img" loading="eager" decoding="async" />
+    <div class="banner-scrim"></div>
+    <div class="container page-hero reveal">
+      <span class="eyebrow">Become a Partner</span>
+      <h1>Grow with a UK brand that values lasting relationships</h1>
+      <hr class="divider" />
+      <p class="lead">
+        MARSHLAND welcomes manufacturers, OEM/ODM partners, distributors, and brand collaborators
+        across product categories who share our commitment to quality and professionalism.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container pathways reveal">
+      <div>
+        <h2>Who we partner with</h2>
+        <hr class="divider" />
+        <ul class="checklist">
+          <li>Manufacturers and factories seeking a UK brand channel</li>
+          <li>OEM / ODM partners for consumer product development</li>
+          <li>Distributors and wholesale collaborators</li>
+          <li>Brand collaborators across top-selling categories</li>
+        </ul>
+      </div>
+      <SectionMedia
+        src="/images/section-categories.jpg"
+        alt="Multi-category consumer products for partnership opportunities"
+      />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container offer-grid reveal">
+      <SectionMedia
+        src="/images/section-sourcing.jpg"
+        alt="Product sourcing and supply partnership with MARSHLAND"
+      />
+      <div>
+        <h2>What we offer</h2>
+        <hr class="divider" />
+        <ul class="checklist">
+          <li>A UK-registered brand presence with Amazon retail reach</li>
+          <li>Clear communication and professional partnership pathways</li>
+          <li>Interest in multi-category sourcing and long-term supply</li>
+          <li>Direct access to our directors for serious enquiries</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container form-layout reveal">
+      <div>
+        <h2>Partnership enquiry</h2>
+        <hr class="divider" />
+        <p>
+          Tell us about your company, your product categories, and how you would like to work
+          together. Our team will review your message and respond.
+        </p>
+        <div class="director-contacts">
+          {
+            company.directors.map((director) => (
+              <p>
+                <strong>{director.name}</strong>
+                <br />
+                <a href={`mailto:${director.email}`}>{director.email}</a>
+                <br />
+                <a href={director.phoneHref}>{director.phone}</a>
+              </p>
+            ))
+          }
+        </div>
+      </div>
+      <div class="form-panel">
+        <PartnerForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-banner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 22rem;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .banner-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+
+  .banner-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--cream-light) 94%, transparent) 0%,
+      color-mix(in srgb, var(--cream-light) 70%, transparent) 55%,
+      color-mix(in srgb, var(--cream-light) 35%, transparent) 100%
+    );
+  }
+
+  .page-hero {
+    padding: clamp(4rem, 10vw, 6rem) 0 var(--space-lg);
+  }
+
+  .pathways,
+  .offer-grid,
+  .form-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .form-layout {
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: start;
+  }
+
+  .checklist {
+    margin: 0;
+    padding-left: 1.15rem;
+    color: var(--ink-soft);
+  }
+
+  .checklist li + li {
+    margin-top: 0.75rem;
+  }
+
+  .form-panel {
+    padding: 1.75rem;
+    background: color-mix(in srgb, var(--white) 70%, var(--cream-light));
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .director-contacts {
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .director-contacts a {
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  .director-contacts a:hover {
+    color: var(--maroon);
+  }
+
+  @media (max-width: 900px) {
+    .pathways,
+    .offer-grid,
+    .form-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

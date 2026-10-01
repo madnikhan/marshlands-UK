@@ -1,0 +1,212 @@
+---
+import { company, navLinks } from '../data/company';
+
+const pathname = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label={`${company.brand} home`}>
+      <img src="/images/logo.png" alt={company.brand} width="280" height="46" />
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      aria-label="Open menu"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+      <ul>
+        {
+          navLinks.map((link) => {
+            const active =
+              link.href === '/'
+                ? pathname === '/'
+                : pathname === link.href || pathname.startsWith(`${link.href}/`);
+            return (
+              <li>
+                <a href={link.href} class:list={[{ 'is-active': active }]} aria-current={active ? 'page' : undefined}>
+                  {link.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <a class="btn btn--primary header-cta" href="/partner">Partner with us</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 50;
+    height: var(--header-height);
+    background: color-mix(in srgb, var(--cream-light) 88%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    gap: 1.5rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .brand img {
+    height: 2.75rem;
+    width: auto;
+    max-width: min(42vw, 15rem);
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .primary-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .primary-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 1.35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .primary-nav ul a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--ink-soft);
+    position: relative;
+    padding: 0.25rem 0;
+  }
+
+  .primary-nav ul a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.2rem;
+    height: 2px;
+    background: var(--maroon);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s var(--ease);
+  }
+
+  .primary-nav ul a:hover,
+  .primary-nav ul a.is-active {
+    color: var(--maroon);
+  }
+
+  .primary-nav ul a:hover::after,
+  .primary-nav ul a.is-active::after {
+    transform: scaleX(1);
+  }
+
+  .header-cta {
+    min-height: 2.5rem;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.85rem;
+    color: var(--white);
+    background: var(--maroon);
+    border-color: var(--maroon);
+    text-decoration: none;
+  }
+
+  .header-cta:hover {
+    color: var(--white);
+    background: var(--maroon-deep);
+    border-color: var(--maroon-deep);
+  }
+
+  .nav-toggle {
+    display: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 1.35rem;
+    height: 2px;
+    margin: 0.35rem auto;
+    background: var(--ink);
+    transition: transform 0.25s var(--ease);
+  }
+
+  @media (max-width: 920px) {
+    .nav-toggle {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .primary-nav {
+      position: absolute;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      display: none;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
+      padding: 1.25rem 1.25rem 1.5rem;
+      background: var(--cream-light);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .primary-nav.is-open {
+      display: flex;
+    }
+
+    .primary-nav ul {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.85rem;
+    }
+
+    .header-cta {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.primary-nav');
+
+  toggle?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+</script>

@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import SectionMedia from '../components/SectionMedia.astro';
+import { company } from '../data/company';
+---
+
+<BaseLayout
+  title="Contact Us"
+  description="Contact MARSHLAND directors Atiq Ur Rehman and Qasim Ahmed for product, partnership, or general enquiries."
+  canonicalPath="/contact"
+>
+  <section class="page-banner">
+    <img src="/images/section-contact.jpg" alt="" class="banner-img" loading="eager" decoding="async" />
+    <div class="banner-scrim"></div>
+    <div class="container page-hero reveal">
+      <span class="eyebrow">Contact Us</span>
+      <h1>We would like to hear from you</h1>
+      <hr class="divider" />
+      <p class="lead">
+        Whether you are a customer, supplier, or potential partner, our directors are available to
+        assist with professional enquiries.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container contact-grid reveal">
+      <div class="contacts">
+        <SectionMedia
+          src="/images/section-contact.jpg"
+          alt="Contact MARSHLAND — professional UK business"
+        />
+        {
+          company.directors.map((director) => (
+            <article class="contact-card">
+              <h2>{director.name}</h2>
+              <p class="role">{director.title}</p>
+              <hr class="divider" />
+              <p>
+                <span>Phone</span>
+                <a href={director.phoneHref}>{director.phone}</a>
+              </p>
+              <p>
+                <span>Email</span>
+                <a href={`mailto:${director.email}`}>{director.email}</a>
+              </p>
+            </article>
+          ))
+        }
+        <article class="contact-card">
+          <h2>Company</h2>
+          <p class="role">{company.legalName}</p>
+          <hr class="divider" />
+          <p>
+            <span>Website</span>
+            <a href={company.website}>{company.websiteDisplay}</a>
+          </p>
+          <p>
+            <span>Location</span>
+            <strong>{company.location}</strong>
+          </p>
+          <p>
+            <span>Amazon</span>
+            <a href={company.amazonStoreUrl} target="_blank" rel="noopener noreferrer">
+              MARSHLAND store
+            </a>
+          </p>
+        </article>
+      </div>
+
+      <div class="form-panel">
+        <h2>Send a message</h2>
+        <hr class="divider" />
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-banner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 22rem;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .banner-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+
+  .banner-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--cream-light) 94%, transparent) 0%,
+      color-mix(in srgb, var(--cream-light) 70%, transparent) 55%,
+      color-mix(in srgb, var(--cream-light) 35%, transparent) 100%
+    );
+  }
+
+  .page-hero {
+    padding: clamp(4rem, 10vw, 6rem) 0 var(--space-lg);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .contacts {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .contact-card {
+    padding: 1.5rem;
+    background: color-mix(in srgb, var(--white) 70%, var(--cream-light));
+    border: 1px solid var(--border);
+  }
+
+  .contact-card h2 {
+    font-size: 1.65rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .role {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--maroon);
+  }
+
+  .contact-card p {
+    display: grid;
+    gap: 0.15rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .contact-card span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .contact-card a,
+  .contact-card strong {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .contact-card a:hover {
+    color: var(--maroon);
+  }
+
+  .form-panel {
+    padding: 1.75rem;
+    background: color-mix(in srgb, var(--white) 75%, var(--cream-light));
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

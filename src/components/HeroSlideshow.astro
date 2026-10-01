@@ -1,0 +1,131 @@
+---
+interface Slide {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  slides: Slide[];
+}
+
+const { slides } = Astro.props;
+---
+
+<div class="hero-slideshow" aria-hidden="true">
+  {
+    slides.map((slide, index) => (
+      <div class:list={['slide', `slide--${index + 1}`]}>
+        <img src={slide.src} alt="" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
+      </div>
+    ))
+  }
+  <div class="scrim"></div>
+</div>
+
+<style>
+  .hero-slideshow {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background: var(--cream-light);
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    animation: slideFade 12s infinite;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.06);
+    will-change: transform, opacity;
+    animation: kenBurns 12s infinite;
+  }
+
+  .slide--1 {
+    animation-delay: 0s;
+    opacity: 1;
+  }
+  .slide--1 img {
+    animation-delay: 0s;
+  }
+
+  .slide--2 {
+    animation-delay: 4s;
+  }
+  .slide--2 img {
+    animation-delay: 4s;
+  }
+
+  .slide--3 {
+    animation-delay: 8s;
+  }
+  .slide--3 img {
+    animation-delay: 8s;
+  }
+
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        105deg,
+        color-mix(in srgb, var(--cream-light) 92%, transparent) 0%,
+        color-mix(in srgb, var(--cream-light) 72%, transparent) 42%,
+        color-mix(in srgb, var(--maroon) 28%, transparent) 100%
+      ),
+      linear-gradient(to top, color-mix(in srgb, var(--cream-light) 80%, transparent), transparent 45%);
+  }
+
+  /* ~4s per slide: quick crossfade, continuous motion */
+  @keyframes slideFade {
+    0% {
+      opacity: 0;
+    }
+    8% {
+      opacity: 1;
+    }
+    28% {
+      opacity: 1;
+    }
+    36% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes kenBurns {
+    0% {
+      transform: scale(1.06) translate3d(0, 0, 0);
+    }
+    32% {
+      transform: scale(1.14) translate3d(-2%, -1.2%, 0);
+    }
+    100% {
+      transform: scale(1.14) translate3d(-2%, -1.2%, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide {
+      animation: none;
+      opacity: 0;
+    }
+
+    .slide--1 {
+      opacity: 1;
+    }
+
+    .slide img {
+      animation: none;
+      transform: none;
+    }
+  }
+</style>

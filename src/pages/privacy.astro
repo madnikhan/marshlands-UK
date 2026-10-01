@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { company } from '../data/company';
+---
+
+<BaseLayout
+  title="Privacy"
+  description="Privacy information for the MARSHLAND website, including how contact and partnership form enquiries are handled."
+  canonicalPath="/privacy"
+>
+  <section class="page-hero">
+    <div class="container reveal">
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy</h1>
+      <hr class="divider" />
+      <p class="lead">
+        This page explains how {company.brand} ({company.legalName}) handles information submitted
+        through this website.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container privacy reveal">
+      <h2>Who we are</h2>
+      <p>
+        This website is operated by {company.legalName}, trading as {company.brand}, based in the
+        United Kingdom.
+      </p>
+
+      <h2>What we collect</h2>
+      <p>
+        When you use our Contact or Become a Partner forms, we collect the information you choose
+        to submit — typically your name, email address, company details (where provided), and
+        message content.
+      </p>
+
+      <h2>How we use it</h2>
+      <p>
+        We use form submissions solely to respond to your enquiry and to discuss potential
+        products, partnerships, or other business matters you raise. We do not sell your personal
+        information.
+      </p>
+
+      <h2>Who receives it</h2>
+      <p>
+        Enquiries are directed to our directors at {company.directors[0].email} and{' '}
+        {company.directors[1].email}. Form delivery may be processed by a third-party form service
+        (such as Web3Forms) acting on our behalf.
+      </p>
+
+      <h2>How long we keep it</h2>
+      <p>
+        We retain enquiry correspondence only for as long as needed to handle your request and for
+        ordinary business record-keeping, unless a longer period is required by law.
+      </p>
+
+      <h2>Your rights</h2>
+      <p>
+        Depending on applicable UK data protection law, you may have rights to access, correct, or
+        request deletion of personal information we hold about you. To exercise these rights,
+        contact us using the details on our <a href="/contact">Contact Us</a> page.
+      </p>
+
+      <h2>Updates</h2>
+      <p>
+        We may update this privacy notice from time to time. The latest version will always be
+        available on this page.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .privacy {
+    max-width: 42rem;
+  }
+
+  .privacy h2 {
+    margin-top: 2rem;
+  }
+
+  .privacy a {
+    color: var(--maroon);
+    font-weight: 600;
+  }
+</style>
