@@ -24,13 +24,13 @@ const firstPoster = videos[0]?.poster ?? '';
         data-hero-video
         muted
         playsinline
-        loop
-        preload={index === 0 ? 'auto' : 'metadata'}
+        autoplay={index === 0}
+        preload="auto"
         poster={video.poster}
         aria-label={video.label}
       >
-        <source src={video.webm} type="video/webm" />
         <source src={video.mp4} type="video/mp4" />
+        <source src={video.webm} type="video/webm" />
       </video>
     ))
   }
@@ -61,7 +61,7 @@ const firstPoster = videos[0]?.poster ?? '';
 
   .hero-video {
     opacity: 0;
-    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1;
   }
 
@@ -73,14 +73,15 @@ const firstPoster = videos[0]?.poster ?? '';
     position: absolute;
     inset: 0;
     z-index: 2;
+    pointer-events: none;
     background:
       linear-gradient(
         105deg,
-        color-mix(in srgb, var(--cream-light) 92%, transparent) 0%,
-        color-mix(in srgb, var(--cream-light) 72%, transparent) 42%,
-        color-mix(in srgb, var(--maroon) 28%, transparent) 100%
+        color-mix(in srgb, var(--cream-light) 78%, transparent) 0%,
+        color-mix(in srgb, var(--cream-light) 35%, transparent) 48%,
+        color-mix(in srgb, var(--maroon) 16%, transparent) 100%
       ),
-      linear-gradient(to top, color-mix(in srgb, var(--cream-light) 80%, transparent), transparent 45%);
+      linear-gradient(to top, color-mix(in srgb, var(--cream-light) 55%, transparent), transparent 55%);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -93,37 +94,92 @@ const firstPoster = videos[0]?.poster ?? '';
 <script>
   function initHeroVideoLoop() {
     const root = document.querySelector('[data-hero-video-loop]');
-    if (!root || root instanceof HTMLElement === false) return;
+    if (!(root instanceof HTMLElement)) return;
     if (root.dataset.bound === 'true') return;
     root.dataset.bound = 'true';
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     const videos = Array.from(root.querySelectorAll<HTMLVideoElement>('[data-hero-video]'));
-    if (!videos.length || reduceMotion) return;
+    if (videos.length < 1) return;
 
     let index = 0;
-    const INTERVAL_MS = 4000;
+    let switching = false;
+
+    const warm = (video: HTMLVideoElement) => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute('playsinline', '');
+      video.setAttribute('muted', '');
+      video.preload = 'auto';
+      try {
+        video.load();
+      } catch {
+        /* ignore */
+      }
+    };
+
+    videos.forEach(warm);
 
     const activate = async (next: number) => {
+      if (switching) return;
+      switching = true;
+      const current = videos[next];
+      if (!current) {
+        switching = false;
+        return;
+      }
+
+      if (current.readyState < 2) {
+        await new Promise<void>((resolve) => {
+          const done = () => {
+            current.removeEventListener('canplay', done);
+            resolve();
+          };
+          current.addEventListener('canplay', done, { once: true });
+          current.load();
+          window.setTimeout(resolve, 4000);
+        });
+      }
+
+      try {
+        current.currentTime = 0;
+      } catch {
+        /* ignore seek errors before metadata */
+      }
+
+      try {
+        await current.play();
+      } catch {
+        /* autoplay can still fail; keep trying next cycle */
+      }
+
       videos.forEach((video, i) => {
         const active = i === next;
         video.classList.toggle('is-active', active);
-        if (active) {
-          video.currentTime = 0;
-          void video.play().catch(() => {});
-        } else {
+        if (!active) {
           video.pause();
         }
       });
+
       index = next;
+      switching = false;
     };
 
-    void activate(0);
-
-    window.setInterval(() => {
+    const advance = () => {
+      if (switching) return;
       const next = (index + 1) % videos.length;
       void activate(next);
-    }, INTERVAL_MS);
+    };
+
+    videos.forEach((video) => {
+      video.addEventListener('ended', () => {
+        if (video.classList.contains('is-active')) advance();
+      });
+    });
+
+    void activate(0);
   }
 
   initHeroVideoLoop();
