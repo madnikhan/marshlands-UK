@@ -24,6 +24,9 @@ import { company, navLinks } from '../data/company';
           </li>
         ))}
         <li>
+          <a href="/partner">Become a Partner</a>
+        </li>
+        <li>
           <a href="/privacy">Privacy</a>
         </li>
       </ul>
@@ -32,23 +35,24 @@ import { company, navLinks } from '../data/company';
     <div>
       <h3>Contact</h3>
       <ul>
-        {
-          company.directors.map((director) => (
-            <li>
-              <strong>{director.name}</strong>
-              <a href={`mailto:${director.email}`}>{director.email}</a>
-            </li>
-          ))
-        }
-        <li>{company.location}</li>
+        <li>
+          <strong>General Enquiries</strong>
+          <a href={`mailto:${company.emails.general}`}>{company.emails.general}</a>
+        </li>
+        <li>
+          <strong>Partnership Enquiries</strong>
+          <a href={`mailto:${company.emails.partnership}`}>{company.emails.partnership}</a>
+        </li>
+        <li>
+          <strong>Address</strong>
+          <span>{company.address}</span>
+        </li>
       </ul>
     </div>
   </div>
 
   <div class="container footer-bottom">
-    <p>
-      © {new Date().getFullYear()} {company.legalName}. All rights reserved.
-    </p>
+    <p>{company.copyright(new Date().getFullYear())}</p>
     <p>{company.websiteDisplay}</p>
   </div>
 </footer>
@@ -111,7 +115,8 @@ import { company, navLinks } from '../data/company';
   }
 
   li,
-  li a {
+  li a,
+  li span {
     color: var(--ink-soft);
     text-decoration: none;
   }

@@ -1,12 +1,24 @@
 export const company = {
   brand: 'MARSHLAND',
   legalName: 'Al-Razaq UK Pvt Ltd',
+  legalNameDisplay: 'Al Razaq UK PVT LTD',
   tagline: 'Quality products for modern living.',
   description:
     'MARSHLAND is a UK-registered brand delivering thoughtfully selected consumer and lifestyle products to customers across the United Kingdom through Amazon, while building lasting partnerships with manufacturers and distributors worldwide across top-selling categories.',
   website: 'https://www.marshlands.co.uk',
   websiteDisplay: 'www.marshlands.co.uk',
   location: 'United Kingdom',
+  address: 'Al Razaq UK Pvt Ltd, Stoneton Crescent, Balsall Common, Coventry, England, CV7 7QS',
+  emails: {
+    general: 'info@marshlands.co.uk',
+    partnership: 'sourcing@marshlands.co.uk',
+  },
+  trust: {
+    title: 'MARSHLAND Brand',
+    subtitle: 'Registered IPO Trademark',
+  },
+  copyright: (year: number) =>
+    `© ${year} Al-Razaq UK Pvt Ltd. Trading as MARSHLAND. All rights reserved.`,
   amazonStoreUrl:
     'https://www.amazon.co.uk/stores/MARSHLAND/page/6EDDBC64-4F50-4638-975A-006DEA3C68B0?lp_asin=B0D8LK182J&ref_=ast_bln&store_ref=bl_ast_dp_brandlogo_sto&bl_grd_status=override',
   directors: [
@@ -31,21 +43,22 @@ export const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/products', label: 'Our Products' },
-  { href: '/partner', label: 'Become a Partner' },
   { href: '/contact', label: 'Contact Us' },
 ] as const;
 
-export const heroSlides = [
+export const heroVideos = [
   {
-    src: '/images/hero-1.jpg',
-    alt: 'Modern lifestyle with curated home and consumer essentials',
+    id: 'peeler-i',
+    mp4: '/videos/hero-peeler-i.mp4',
+    webm: '/videos/hero-peeler-i.webm',
+    poster: '/videos/hero-peeler-i.jpg',
+    label: 'MARSHLAND I-shape peeler',
   },
   {
-    src: '/images/hero-2.jpg',
-    alt: 'Premium assortment of top-selling consumer products',
-  },
-  {
-    src: '/images/hero-3.jpg',
-    alt: 'Global trade and partnership atmosphere',
+    id: 'peeler-y',
+    mp4: '/videos/hero-peeler-y.mp4',
+    webm: '/videos/hero-peeler-y.webm',
+    poster: '/videos/hero-peeler-y.jpg',
+    label: 'MARSHLAND Y-shape peeler',
   },
 ] as const;

@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSlideshow from '../components/HeroSlideshow.astro';
+import HeroVideoLoop from '../components/HeroVideoLoop.astro';
 import SectionMedia from '../components/SectionMedia.astro';
 import ProductCard from '../components/ProductCard.astro';
-import { company, heroSlides } from '../data/company';
+import { company, heroVideos } from '../data/company';
 import { products } from '../data/products';
 
 const featured = products[0];
@@ -15,7 +15,7 @@ const featured = products[0];
   canonicalPath="/"
 >
   <section class="home-hero">
-    <HeroSlideshow slides={[...heroSlides]} />
+    <HeroVideoLoop videos={[...heroVideos]} />
     <div class="container hero-content">
       <h1 class="hero-brand hero-animate">{company.brand}</h1>
       <p class="hero-headline hero-animate-delay">{company.tagline}</p>
@@ -37,8 +37,8 @@ const featured = products[0];
     <div class="container">
       <div class="trust-strip reveal">
         <div class="trust-item">
-          <strong>UK Registered</strong>
-          <span>{company.legalName}</span>
+          <strong>{company.trust.title}</strong>
+          <span>{company.trust.subtitle}</span>
         </div>
         <div class="trust-item">
           <strong>Amazon Brand</strong>

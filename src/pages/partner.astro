@@ -72,17 +72,16 @@ import { company } from '../data/company';
           together. Our team will review your message and respond.
         </p>
         <div class="director-contacts">
-          {
-            company.directors.map((director) => (
-              <p>
-                <strong>{director.name}</strong>
-                <br />
-                <a href={`mailto:${director.email}`}>{director.email}</a>
-                <br />
-                <a href={director.phoneHref}>{director.phone}</a>
-              </p>
-            ))
-          }
+          <p>
+            <strong>General Enquiries</strong>
+            <br />
+            <a href={`mailto:${company.emails.general}`}>{company.emails.general}</a>
+          </p>
+          <p>
+            <strong>Partnership Enquiries</strong>
+            <br />
+            <a href={`mailto:${company.emails.partnership}`}>{company.emails.partnership}</a>
+          </p>
         </div>
       </div>
       <div class="form-panel">

@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Large unoptimized source videos (use public/videos/* compressed assets)
+public/EYE SHAPE PEELER SEP 2026.mp4
+public/Y SHAPE PEELER AMERICAN.mp4
+

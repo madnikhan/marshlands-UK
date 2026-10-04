@@ -1,0 +1,131 @@
+---
+interface HeroVideo {
+  id: string;
+  mp4: string;
+  webm: string;
+  poster: string;
+  label: string;
+}
+
+interface Props {
+  videos: HeroVideo[];
+}
+
+const { videos } = Astro.props;
+const firstPoster = videos[0]?.poster ?? '';
+---
+
+<div class="hero-video-loop" data-hero-video-loop>
+  <img class="hero-poster" src={firstPoster} alt="" loading="eager" decoding="async" aria-hidden="true" />
+  {
+    videos.map((video, index) => (
+      <video
+        class:list={['hero-video', { 'is-active': index === 0 }]}
+        data-hero-video
+        muted
+        playsinline
+        loop
+        preload={index === 0 ? 'auto' : 'metadata'}
+        poster={video.poster}
+        aria-label={video.label}
+      >
+        <source src={video.webm} type="video/webm" />
+        <source src={video.mp4} type="video/mp4" />
+      </video>
+    ))
+  }
+  <div class="scrim" aria-hidden="true"></div>
+</div>
+
+<style>
+  .hero-video-loop {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background: var(--cream-light);
+  }
+
+  .hero-poster,
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-poster {
+    z-index: 0;
+  }
+
+  .hero-video {
+    opacity: 0;
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+  }
+
+  .hero-video.is-active {
+    opacity: 1;
+  }
+
+  .scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+      linear-gradient(
+        105deg,
+        color-mix(in srgb, var(--cream-light) 92%, transparent) 0%,
+        color-mix(in srgb, var(--cream-light) 72%, transparent) 42%,
+        color-mix(in srgb, var(--maroon) 28%, transparent) 100%
+      ),
+      linear-gradient(to top, color-mix(in srgb, var(--cream-light) 80%, transparent), transparent 45%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  function initHeroVideoLoop() {
+    const root = document.querySelector('[data-hero-video-loop]');
+    if (!root || root instanceof HTMLElement === false) return;
+    if (root.dataset.bound === 'true') return;
+    root.dataset.bound = 'true';
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const videos = Array.from(root.querySelectorAll<HTMLVideoElement>('[data-hero-video]'));
+    if (!videos.length || reduceMotion) return;
+
+    let index = 0;
+    const INTERVAL_MS = 4000;
+
+    const activate = async (next: number) => {
+      videos.forEach((video, i) => {
+        const active = i === next;
+        video.classList.toggle('is-active', active);
+        if (active) {
+          video.currentTime = 0;
+          void video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+      index = next;
+    };
+
+    void activate(0);
+
+    window.setInterval(() => {
+      const next = (index + 1) % videos.length;
+      void activate(next);
+    }, INTERVAL_MS);
+  }
+
+  initHeroVideoLoop();
+  document.addEventListener('astro:page-load', initHeroVideoLoop);
+</script>

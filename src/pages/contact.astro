@@ -7,7 +7,7 @@ import { company } from '../data/company';
 
 <BaseLayout
   title="Contact Us"
-  description="Contact MARSHLAND directors Atiq Ur Rehman and Qasim Ahmed for product, partnership, or general enquiries."
+  description="Contact MARSHLAND for general or partnership enquiries. A brand of Al Razaq UK Pvt Ltd, Coventry, United Kingdom."
   canonicalPath="/contact"
 >
   <section class="page-banner">
@@ -18,8 +18,8 @@ import { company } from '../data/company';
       <h1>We would like to hear from you</h1>
       <hr class="divider" />
       <p class="lead">
-        Whether you are a customer, supplier, or potential partner, our directors are available to
-        assist with professional enquiries.
+        Whether you are a customer, supplier, or potential partner, our team is available to assist
+        with professional enquiries.
       </p>
     </div>
   </section>
@@ -31,40 +31,34 @@ import { company } from '../data/company';
           src="/images/section-contact.jpg"
           alt="Contact MARSHLAND — professional UK business"
         />
-        {
-          company.directors.map((director) => (
-            <article class="contact-card">
-              <h2>{director.name}</h2>
-              <p class="role">{director.title}</p>
-              <hr class="divider" />
-              <p>
-                <span>Phone</span>
-                <a href={director.phoneHref}>{director.phone}</a>
-              </p>
-              <p>
-                <span>Email</span>
-                <a href={`mailto:${director.email}`}>{director.email}</a>
-              </p>
-            </article>
-          ))
-        }
+
         <article class="contact-card">
-          <h2>Company</h2>
-          <p class="role">{company.legalName}</p>
+          <h2>{company.brand}</h2>
+          <p class="role">A Brand of {company.legalNameDisplay}</p>
           <hr class="divider" />
           <p>
-            <span>Website</span>
-            <a href={company.website}>{company.websiteDisplay}</a>
+            <span>Address</span>
+            <strong>{company.address}</strong>
           </p>
           <p>
-            <span>Location</span>
-            <strong>{company.location}</strong>
-          </p>
-          <p>
-            <span>Amazon</span>
+            <span>Amazon Store</span>
             <a href={company.amazonStoreUrl} target="_blank" rel="noopener noreferrer">
-              MARSHLAND store
+              {company.brand}
             </a>
+          </p>
+        </article>
+
+        <article class="contact-card">
+          <h2>Enquiries</h2>
+          <p class="role">How to reach us</p>
+          <hr class="divider" />
+          <p>
+            <span>General Enquiries</span>
+            <a href={`mailto:${company.emails.general}`}>{company.emails.general}</a>
+          </p>
+          <p>
+            <span>Partnership Enquiries</span>
+            <a href={`mailto:${company.emails.partnership}`}>{company.emails.partnership}</a>
           </p>
         </article>
       </div>
