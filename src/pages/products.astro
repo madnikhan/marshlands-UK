@@ -8,7 +8,7 @@ import { expandingRangeNote, products } from '../data/products';
 
 <BaseLayout
   title="Our Products"
-  description="Explore MARSHLAND products available on Amazon UK, and learn about our expanding multi-category catalogue of top-selling consumer goods."
+  description="Shop the MARSHLAND kitchen range on Amazon UK — salt and pepper grinders, tin openers, peelers, garlic presses, and more practical cooking tools."
   canonicalPath="/products"
 >
   <section class="page-banner">
@@ -22,11 +22,11 @@ import { expandingRangeNote, products } from '../data/products';
     <div class="banner-scrim"></div>
     <div class="container page-hero reveal">
       <span class="eyebrow">Our Products</span>
-      <h1>Quality products customers choose</h1>
+      <h1>Kitchen tools for everyday cooking</h1>
       <hr class="divider" />
       <p class="lead">
-        Shop MARSHLAND on Amazon UK. Our live range begins with carefully selected kitchen tools —
-        and continues to grow across top-selling consumer categories.
+        Shop the full MARSHLAND kitchen range on Amazon UK — practical, stylish tools designed to make
+        meal prep cleaner, faster, and more enjoyable.
       </p>
       <div class="btn-group">
         <a class="btn btn--primary" href={company.amazonStoreUrl} target="_blank" rel="noopener noreferrer">
@@ -40,8 +40,8 @@ import { expandingRangeNote, products } from '../data/products';
     <div class="container reveal">
       <h2>Current catalogue</h2>
       <hr class="divider" />
-      <div class="product-list">
-        {products.map((product) => <ProductCard product={product} featured />)}
+      <div class="product-grid">
+        {products.map((product) => <ProductCard product={product} />)}
       </div>
     </div>
   </section>
@@ -49,17 +49,17 @@ import { expandingRangeNote, products } from '../data/products';
   <section class="section">
     <div class="container expanding-grid reveal">
       <SectionMedia
-        src="/images/section-sourcing.jpg"
-        alt="MARSHLAND sourcing new top-selling product categories"
+        src="/images/range-kitchen.jpg"
+        alt="MARSHLAND kitchen tools available on Amazon"
       />
       <div>
         <span class="eyebrow">Expanding range</span>
-        <h2>More categories. More opportunity.</h2>
+        <h2>More tools. More opportunity.</h2>
         <hr class="divider" />
         <p class="lead">{expandingRangeNote}</p>
         <p>
-          If you manufacture or distribute products that align with the MARSHLAND standard — across
-          home, lifestyle, or everyday consumer goods — we would like to hear from you.
+          If you manufacture or distribute kitchen and lifestyle products that align with the
+          MARSHLAND standard, we would like to hear from you.
         </p>
         <div class="btn-group">
           <a class="btn btn--primary" href="/partner">Partner with MARSHLAND</a>
@@ -105,10 +105,11 @@ import { expandingRangeNote, products } from '../data/products';
     padding: clamp(4rem, 10vw, 6rem) 0 var(--space-lg);
   }
 
-  .product-list {
+  .product-grid {
     display: grid;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
+    margin-top: 1.75rem;
   }
 
   .expanding-grid {
@@ -120,6 +121,12 @@ import { expandingRangeNote, products } from '../data/products';
 
   @media (max-width: 900px) {
     .expanding-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .product-grid {
       grid-template-columns: 1fr;
     }
   }
