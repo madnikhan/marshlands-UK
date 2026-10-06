@@ -2,11 +2,34 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionMedia from '../components/SectionMedia.astro';
 import { company } from '../data/company';
+
+const values = [
+  {
+    title: 'Quality',
+    lead: "Products we're proud to put our name on.",
+    body: 'We look beyond appearance. Materials, construction, functionality, finish and consistency all contribute to a product customers can rely on.',
+  },
+  {
+    title: 'Reliability',
+    lead: 'Doing what we say, consistently.',
+    body: 'We value dependable products, clear communication and partners who take the same responsible approach to doing business.',
+  },
+  {
+    title: 'Partnership',
+    lead: 'Better business is built together.',
+    body: 'We believe the strongest supplier relationships go beyond individual orders. We want to build open, collaborative partnerships that create long-term value for everyone involved.',
+  },
+  {
+    title: 'Continuous improvement',
+    lead: 'There is always an opportunity to make something better.',
+    body: "Whether it's the product, packaging, manufacturing process or customer experience, we believe small improvements can make a meaningful difference.",
+  },
+];
 ---
 
 <BaseLayout
   title="About"
-  description="Discover the MARSHLAND story — a UK kitchen brand creating practical, stylish tools that make everyday cooking more efficient and enjoyable."
+  description="MARSHLAND is a British home & kitchen brand focused on practical functionality, dependable quality and considered design for everyday living."
   canonicalPath="/about"
 >
   <section class="page-banner">
@@ -14,11 +37,20 @@ import { company } from '../data/company';
     <div class="banner-scrim"></div>
     <div class="container page-hero reveal">
       <span class="eyebrow">About MARSHLAND</span>
-      <h1>Practical tools. Stylish kitchens.</h1>
+      <h1>Practical by nature. Considered by design.</h1>
       <hr class="divider" />
       <p class="lead">
-        MARSHLAND is a United Kingdom kitchen brand bringing practical, well-made tools into everyday
-        cooking — available to customers through our official Amazon store.
+        MARSHLAND is a British home & kitchen brand with a simple ambition: to make everyday products
+        better.
+      </p>
+      <p>
+        We focus on products that bring together practical functionality, dependable quality and
+        considered design — products that work well, feel good to use and belong naturally in the
+        modern home.
+      </p>
+      <p>
+        Our growing range includes everyday kitchen essentials, with new products and categories in
+        development as the MARSHLAND brand continues to grow.
       </p>
     </div>
   </section>
@@ -26,17 +58,21 @@ import { company } from '../data/company';
   <section class="section section--cream">
     <div class="container story-grid reveal">
       <div>
-        <h2>Our story</h2>
+        <span class="eyebrow">Our approach</span>
+        <h2>Everyday products, made better.</h2>
         <hr class="divider" />
+        <p class="lead">We believe good products don't need to be complicated.</p>
         <p>
-          MARSHLAND was born from a shared passion for creating practical and stylish solutions for
-          everyday cooking. Inspired by a desire to make kitchens more efficient and enjoyable, we
-          crafted a range of high-quality tools designed to enhance the cooking experience. Our
-          journey began with a simple goal: to bring functionality and elegance to homes everywhere.
+          They need to solve a real need, perform reliably and offer the right balance of function,
+          quality, design and value.
         </p>
         <p>
-          From salt and pepper mills to peelers, tin openers, and garlic presses, every product is
-          chosen to feel dependable in the hand and considered on the counter.
+          That thinking guides the products we bring to the MARSHLAND range and the partners we choose
+          to work with.
+        </p>
+        <p>
+          From materials and functionality to packaging and presentation, we're always looking for
+          ways to improve the details that shape the customer experience.
         </p>
       </div>
       <SectionMedia
@@ -54,15 +90,25 @@ import { company } from '../data/company';
       />
       <div>
         <span class="eyebrow">Looking ahead</span>
-        <h2>A growing kitchen brand</h2>
+        <h2>Building a brand for the long term.</h2>
         <hr class="divider" />
         <p class="lead">
-          We are expanding our Amazon kitchen range while building relationships with manufacturers
-          and distributors who share our standards for quality, reliability, and thoughtful design.
+          MARSHLAND began with kitchen essentials, but our ambitions extend beyond a single product
+          category.
         </p>
         <p>
-          As we explore new product lines — including through international sourcing partnerships —
-          we remain focused on tools that make cooking simpler, cleaner, and more enjoyable.
+          We're building a broader portfolio of products for the home, guided by customer needs,
+          market opportunities and a commitment to practical, well-considered design.
+        </p>
+        <p>
+          Our products are currently available to customers across the UK through Amazon, while we
+          continue to develop the MARSHLAND range and explore new products, categories and routes to
+          market.
+        </p>
+        <p>
+          Alongside this growth, we're building an international network of trusted manufacturers,
+          suppliers and commercial partners who share our ambitions and can grow with us for the long
+          term.
         </p>
       </div>
     </div>
@@ -70,12 +116,34 @@ import { company } from '../data/company';
 
   <section class="section section--cream">
     <div class="container reveal">
+      <span class="eyebrow">What we value</span>
+      <h2>The principles behind our products and partnerships.</h2>
+      <hr class="divider" />
+
+      <div class="values-grid">
+        {
+          values.map((value) => (
+            <article class="value">
+              <h3>{value.title}</h3>
+              <p class="value-lead">{value.lead}</p>
+              <hr class="divider divider--mist" />
+              <p>{value.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container reveal">
       <span class="eyebrow">Leadership</span>
-      <h2>Directors</h2>
+      <h2>The people behind MARSHLAND.</h2>
       <hr class="divider" />
       <p class="lead">
-        MARSHLAND is led by directors dedicated to building a professional UK brand with a growing
-        international network.
+        MARSHLAND is led by directors with a shared focus on building a trusted British brand,
+        developing products customers value and creating strong, long-term relationships with our
+        manufacturing and commercial partners.
       </p>
 
       <div class="directors">
@@ -100,10 +168,16 @@ import { company } from '../data/company';
 
   <section class="section section--maroon">
     <div class="container reveal">
-      <h2>Partner with us</h2>
-      <p class="lead">
-        If you manufacture or distribute kitchen and lifestyle products that align with the MARSHLAND
-        standard, we would welcome a conversation.
+      <span class="eyebrow">Partner with MARSHLAND</span>
+      <h2>Let's build something valuable together.</h2>
+      <p class="lead">Great products depend on great partnerships.</p>
+      <p>
+        We're always interested in meeting experienced manufacturers, OEM & ODM partners, suppliers
+        and distributors who share our commitment to quality, reliability and continuous improvement.
+      </p>
+      <p>
+        Whether you have established manufacturing capabilities, an innovative product opportunity or
+        the expertise to help develop the next MARSHLAND product, we'd like to hear from you.
       </p>
       <div class="btn-group">
         <a class="btn btn--ghost" href="/partner">Become a Partner</a>
@@ -146,15 +220,43 @@ import { company } from '../data/company';
 
   .page-hero {
     padding: clamp(4rem, 10vw, 6rem) 0 var(--space-lg);
+    max-width: 46rem;
   }
 
   .story-grid,
   .media-row,
-  .directors {
+  .directors,
+  .values-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: center;
+  }
+
+  .values-grid {
+    margin-top: 2rem;
+    align-items: stretch;
+    gap: 1.75rem;
+  }
+
+  .value h3 {
+    margin: 0 0 0.4rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--maroon);
+  }
+
+  .value-lead {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--ink);
+  }
+
+  .value p:last-child {
+    margin: 0;
+    color: var(--ink-soft);
   }
 
   .directors {
@@ -186,10 +288,24 @@ import { company } from '../data/company';
     color: var(--maroon);
   }
 
+  .section--maroon .eyebrow {
+    color: var(--cream);
+  }
+
+  .section--maroon h2,
+  .section--maroon p {
+    color: var(--white);
+  }
+
+  .section--maroon .lead {
+    color: color-mix(in srgb, var(--white) 88%, var(--cream));
+  }
+
   @media (max-width: 800px) {
     .story-grid,
     .media-row,
-    .directors {
+    .directors,
+    .values-grid {
       grid-template-columns: 1fr;
     }
   }

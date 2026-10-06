@@ -15,13 +15,12 @@ export const products: Product[] = [
     id: 'salt-pepper-grinder',
     name: 'Salt & Pepper Grinder Set',
     shortDescription:
-      'A premium acacia wood and marble mill set — practical everyday seasoning with a refined kitchen presence.',
+      'Everyday function. Refined design. A distinctive acacia wood and marble grinder set combining practical everyday seasoning with an elegant kitchen presence.',
     features: [
       'Acacia wood bodies with contrasting marble tops',
       'Adjustable grind for fine or coarse seasoning',
-      'Refillable design for salt, peppercorns, and spices',
-      'MARSHLAND engraved detailing on each mill',
-      'A stylish set for cooking and the dining table',
+      'Refillable design for salt, peppercorns and spices',
+      'MARSHLAND engraved detailing',
     ],
     amazonUrl:
       'https://www.amazon.co.uk/stores/page/B68DE6A8-92F3-42E1-9056-EB70FE76934C',
@@ -31,15 +30,14 @@ export const products: Product[] = [
   },
   {
     id: 'tin-opener',
-    name: 'Tin Opener',
+    name: 'Heavy-Duty Tin Opener',
     shortDescription:
-      'A heavy-duty manual can opener with a soft grip and magnetic lid lift — built for smooth, everyday opening.',
+      'Built to make everyday tasks easier. A robust manual tin opener combining a reliable stainless-steel cutting mechanism with comfortable soft-grip handles and a convenient magnetic lid lift.',
     features: [
-      'Stainless steel cutting mechanism for reliable use',
-      'Ergonomic soft handles for comfortable control',
-      'Magnetic lid lift for cleaner, safer opening',
-      'Built-in bottle opener for everyday versatility',
-      'Compact design that stores easily in a drawer',
+      'Stainless-steel cutting mechanism',
+      'Ergonomic soft-grip handles',
+      'Magnetic lid lift for easier handling',
+      'Integrated bottle opener',
     ],
     amazonUrl:
       'https://www.amazon.co.uk/stores/page/C6EE6881-119C-44C9-ACB7-B8E01A8B7B9D',
@@ -50,15 +48,14 @@ export const products: Product[] = [
   },
   {
     id: 'peeler',
-    name: 'Premium Peeler',
+    name: 'Premium Swivel Peeler',
     shortDescription:
-      'A sharp, rustproof stainless steel swivel peeler with a non-slip grip — made for fast, comfortable kitchen prep.',
+      'Simple. Comfortable. Precise. A sharp stainless-steel swivel peeler designed for quick, controlled food preparation, with a comfortable non-slip grip for everyday use.',
     features: [
-      'Stainless steel blade for precise peeling',
-      'Ergonomic non-slip comfort grip',
-      'Smooth swivel action for uneven produce',
-      'Ideal for potatoes, carrots, citrus, and fruit',
-      'Dishwasher safe and easy to care for',
+      'Stainless-steel blade for precise peeling',
+      'Ergonomic non-slip grip',
+      'Smooth swivel action',
+      'Suitable for vegetables, fruit and citrus',
     ],
     amazonUrl:
       'https://www.amazon.co.uk/stores/page/93F4140E-A3CE-4CA0-8ACB-27428C1BD49F',
@@ -69,15 +66,14 @@ export const products: Product[] = [
   },
   {
     id: 'garlic-press',
-    name: 'Garlic Press',
+    name: 'Heavy-Duty Garlic Press',
     shortDescription:
-      'A heavy-duty garlic press designed for effortless crushing — clean hands, quick prep, and easy cleaning.',
+      'Less effort. Better preparation. A robust garlic press designed to make everyday food preparation quicker and easier, with efficient crushing and straightforward cleaning.',
     features: [
-      'Crush garlic cloves with less effort',
-      'Spacious chamber for faster meal prep',
-      'No-peel convenience for everyday cooking',
-      'Dishwasher-safe construction for easy cleanup',
-      'Durable design built for regular kitchen use',
+      'Designed to crush garlic with less effort',
+      'Generous chamber for efficient preparation',
+      'No-peel convenience',
+      'Easy-to-clean construction',
     ],
     amazonUrl:
       'https://www.amazon.co.uk/stores/page/D370DC24-E5B4-4819-9257-3BD9EA34C330',
@@ -88,4 +84,4 @@ export const products: Product[] = [
 ];
 
 export const expandingRangeNote =
-  'Our kitchen range is growing. MARSHLAND continues to develop practical, stylish cooking tools — and explore new product lines through carefully selected manufacturing and supply partners worldwide.';
+  "Our kitchen collection is just the beginning. We're developing MARSHLAND into a broader Home & Kitchen brand, exploring new products and categories that share the same principles behind our existing range: useful functionality, dependable quality, considered design and everyday value.";

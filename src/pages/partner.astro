@@ -3,82 +3,201 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PartnerForm from '../components/PartnerForm.astro';
 import SectionMedia from '../components/SectionMedia.astro';
 import { company } from '../data/company';
+
+const whyPoints = [
+  {
+    title: 'A focus on UK customers',
+    body: 'Our current kitchen collection is available through Amazon UK. As we expand, our focus remains on products that meet everyday needs, are clearly presented and fit naturally within the MARSHLAND range.',
+  },
+  {
+    title: 'Direct communication with decision-makers',
+    body: 'Discuss product opportunities and commercial requirements directly with the people responsible for developing the MARSHLAND range. Our aim is to keep conversations practical, expectations clear and next steps understood.',
+  },
+  {
+    title: 'Respect for your expertise',
+    body: 'We welcome constructive input on materials, manufacturing, functionality and packaging. We want to understand what you do well, where improvements are possible and how we can develop an opportunity that works for both businesses.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Introduce your business',
+    body: 'Tell us what you manufacture or supply, the categories you specialise in and the capabilities that distinguish your business. A company profile and a few relevant product examples are a useful starting point.',
+  },
+  {
+    title: 'Explore the opportunity',
+    body: 'Together, we can discuss product suitability, specifications, branding options and commercial requirements. Indicative pricing, minimum order quantities and production lead times help establish whether there is a good fit.',
+  },
+  {
+    title: 'Agree the next steps',
+    body: 'For suitable opportunities, we can explore samples, product refinements, packaging and relevant testing requirements before agreeing specifications and commercial terms for an initial order.',
+  },
+];
 ---
 
 <BaseLayout
   title="Become a Partner"
-  description="Partner with MARSHLAND — UK brand seeking manufacturers, OEM/ODM suppliers, and distributors across top-selling consumer product categories."
+  description="Partner with MARSHLAND — a UK Home & Kitchen brand seeking manufacturers, product developers and suppliers to grow from kitchen essentials into the wider home."
   canonicalPath="/partner"
 >
   <section class="page-banner">
     <img src="/images/hero-3.jpg" alt="" class="banner-img" loading="eager" decoding="async" />
     <div class="banner-scrim"></div>
     <div class="container page-hero reveal">
-      <span class="eyebrow">Become a Partner</span>
-      <h1>Grow with a UK brand that values lasting relationships</h1>
+      <span class="eyebrow">Partner with MARSHLAND</span>
+      <h1>Let’s bring better everyday products to market.</h1>
       <hr class="divider" />
       <p class="lead">
-        MARSHLAND welcomes manufacturers, OEM/ODM partners, distributors, and brand collaborators
-        across product categories who share our commitment to quality and professionalism.
+        MARSHLAND is a UK-based Home & Kitchen brand, growing from an existing kitchen collection into
+        a broader range of products for the home.
       </p>
+      <p>
+        We’re looking for manufacturers, product developers and suppliers who can help us take that
+        next step—with well-made products, practical expertise and a shared commitment to quality.
+      </p>
+      <p>
+        Whether you offer an established product range, private-label opportunities or new product
+        development, we’d welcome a conversation about what we could achieve together.
+      </p>
+      <div class="btn-group">
+        <a class="btn btn--primary" href="#enquiry">Discuss a Partnership</a>
+        <a class="btn btn--secondary" href="/products">Explore Our Products</a>
+      </div>
     </div>
   </section>
 
   <section class="section section--cream">
-    <div class="container pathways reveal">
+    <div class="container focus-grid reveal">
       <div>
-        <h2>Who we partner with</h2>
+        <span class="eyebrow">Our product focus</span>
+        <h2>From kitchen essentials to the wider home.</h2>
         <hr class="divider" />
-        <ul class="checklist">
-          <li>Manufacturers and factories seeking a UK brand channel</li>
-          <li>OEM / ODM partners for consumer product development</li>
-          <li>Distributors and wholesale collaborators</li>
-          <li>Brand collaborators across top-selling categories</li>
-        </ul>
+        <p class="lead">
+          We’re building the MARSHLAND range around products that serve a clear purpose, work
+          reliably and offer customers the right balance of function, design and value.
+        </p>
+
+        <div class="focus-blocks">
+          <article>
+            <h3>Kitchen: our current collection</h3>
+            <p>
+              Our range includes salt and pepper grinders, tin openers, peelers and garlic presses.
+              We welcome complementary products and opportunities to improve the details that
+              matter—from materials and usability to finish and packaging.
+            </p>
+          </article>
+          <article>
+            <h3>Home: our next stage of growth</h3>
+            <p>
+              We’re exploring new opportunities across the wider home category. Our focus is on useful
+              everyday products that complement the MARSHLAND brand and meet genuine customer needs.
+            </p>
+            <p>
+              We’re interested in both proven products and well-developed new ideas, with each
+              opportunity considered on its own merits.
+            </p>
+          </article>
+        </div>
       </div>
       <SectionMedia
-        src="/images/section-categories.jpg"
-        alt="Multi-category consumer products for partnership opportunities"
+        src="/images/section-categories-kitchen.jpg"
+        alt="MARSHLAND kitchen collection and expanding home range"
       />
     </div>
   </section>
 
   <section class="section">
-    <div class="container offer-grid reveal">
-      <SectionMedia
-        src="/images/section-sourcing.jpg"
-        alt="Product sourcing and supply partnership with MARSHLAND"
-      />
-      <div>
-        <h2>What we offer</h2>
-        <hr class="divider" />
-        <ul class="checklist">
-          <li>A UK-registered brand presence with Amazon retail reach</li>
-          <li>Clear communication and professional partnership pathways</li>
-          <li>Interest in multi-category sourcing and long-term supply</li>
-          <li>Direct access to our directors for serious enquiries</li>
-        </ul>
+    <div class="container reveal">
+      <span class="eyebrow">Why work with MARSHLAND?</span>
+      <h2>A focused brand. A collaborative approach.</h2>
+      <hr class="divider" />
+      <p class="lead">
+        A successful partnership needs a clear contribution from both sides. You bring knowledge of
+        your products and production capabilities. We bring a UK-focused brand, an existing kitchen
+        collection and a clear direction for growth.
+      </p>
+
+      <div class="why-grid">
+        {
+          whyPoints.map((point) => (
+            <article class="why-point">
+              <h3>{point.title}</h3>
+              <hr class="divider divider--mist" />
+              <p>{point.body}</p>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <section class="section section--cream">
+    <div class="container looking-for reveal">
+      <span class="eyebrow">Who we’re looking for</span>
+      <h2>Product expertise backed by dependable supply.</h2>
+      <hr class="divider" />
+      <p class="lead">
+        We welcome manufacturers, OEM and ODM specialists, and suppliers with strong product knowledge
+        and reliable production or sourcing capabilities.
+      </p>
+      <p>
+        We’re interested in partners who can provide clear product specifications, consistent quality
+        and relevant quality and safety documentation. Transparent information about manufacturing
+        capabilities, pricing, minimum order quantities and lead times helps us assess opportunities
+        realistically.
+      </p>
+      <p>
+        We value responsive communication, openness about limitations and a practical approach to
+        resolving problems.
+      </p>
+      <p>
+        Wholesale and distribution enquiries are also welcome from businesses interested in bringing
+        MARSHLAND products to their customers.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container reveal">
+      <span class="eyebrow">How a partnership can begin</span>
+      <h2>A clear route from introduction to next steps.</h2>
+      <hr class="divider" />
+
+      <div class="steps">
+        {
+          steps.map((step, index) => (
+            <article class="step">
+              <span class="step-num">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="steps-note">
+        Our aim is to establish a sound basis for cooperation, with room for the relationship to
+        develop as the business grows.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--cream" id="enquiry">
     <div class="container form-layout reveal">
       <div>
-        <h2>Partnership enquiry</h2>
+        <span class="eyebrow">Partnership enquiries</span>
+        <h2>Tell us what you do best.</h2>
         <hr class="divider" />
         <p>
-          Tell us about your company, your product categories, and how you would like to work
-          together. Our team will review your message and respond.
+          Introduce your company and the products or capabilities you believe could be a good fit for
+          MARSHLAND.
+        </p>
+        <p>
+          Please share a brief overview and, where available, a link to your website, company profile
+          or product catalogue. A few relevant examples will help us understand the opportunity.
         </p>
         <div class="director-contacts">
           <p>
-            <strong>General Enquiries</strong>
-            <br />
-            <a href={`mailto:${company.emails.general}`}>{company.emails.general}</a>
-          </p>
-          <p>
-            <strong>Partnership Enquiries</strong>
+            <strong>Partnership enquiries</strong>
             <br />
             <a href={`mailto:${company.emails.partnership}`}>{company.emails.partnership}</a>
           </p>
@@ -124,13 +243,13 @@ import { company } from '../data/company';
 
   .page-hero {
     padding: clamp(4rem, 10vw, 6rem) 0 var(--space-lg);
+    max-width: 46rem;
   }
 
-  .pathways,
-  .offer-grid,
+  .focus-grid,
   .form-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.05fr 0.95fr;
     gap: 3rem;
     align-items: center;
   }
@@ -140,14 +259,63 @@ import { company } from '../data/company';
     align-items: start;
   }
 
-  .checklist {
+  .focus-blocks {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .focus-blocks h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .focus-blocks p {
     margin: 0;
-    padding-left: 1.15rem;
     color: var(--ink-soft);
   }
 
-  .checklist li + li {
+  .focus-blocks p + p {
     margin-top: 0.75rem;
+  }
+
+  .why-grid,
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.75rem;
+    margin-top: 2rem;
+  }
+
+  .why-point h3,
+  .step h3 {
+    margin: 0 0 0.65rem;
+    font-size: 1.1rem;
+  }
+
+  .why-point p,
+  .step p {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  .looking-for {
+    max-width: 48rem;
+  }
+
+  .step-num {
+    display: inline-block;
+    margin-bottom: 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--maroon);
+  }
+
+  .steps-note {
+    margin-top: 1.75rem;
+    color: var(--ink-soft);
+    max-width: 42rem;
   }
 
   .form-panel {
@@ -173,9 +341,10 @@ import { company } from '../data/company';
   }
 
   @media (max-width: 900px) {
-    .pathways,
-    .offer-grid,
-    .form-layout {
+    .focus-grid,
+    .form-layout,
+    .why-grid,
+    .steps {
       grid-template-columns: 1fr;
     }
   }
