@@ -274,6 +274,20 @@ p:last-child {
   filter: blur(0);
 }
 
+.reveal--fast {
+  transform: translate3d(0, 18px, 0);
+  filter: blur(2px);
+  transition:
+    opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal--fast.is-visible {
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+}
+
 .hero-animate {
   animation: heroRise 1.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }

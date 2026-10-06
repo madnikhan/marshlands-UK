@@ -57,16 +57,22 @@ const rangePillars = [
   </section>
 
   <section class="section section--cream">
-    <div class="container reveal">
-      <span class="eyebrow">Current collection</span>
-      <h2>Kitchen essentials for everyday life.</h2>
-      <hr class="divider" />
-      <p class="lead">
-        Our current collection brings together practical kitchen tools designed to perform reliably,
-        feel comfortable to use and fit naturally into the modern home.
-      </p>
+    <div class="container">
+      <div class="collection-intro reveal reveal--fast">
+        <span class="eyebrow">Current collection</span>
+        <h2>Kitchen essentials for everyday life.</h2>
+        <hr class="divider" />
+        <p class="lead">
+          Our current collection brings together practical kitchen tools designed to perform reliably,
+          feel comfortable to use and fit naturally into the modern home.
+        </p>
+      </div>
       <div class="product-grid">
-        {products.map((product) => <ProductCard product={product} />)}
+        {
+          products.map((product) => (
+            <ProductCard product={product} class="reveal reveal--fast" loading="eager" />
+          ))
+        }
       </div>
     </div>
   </section>
