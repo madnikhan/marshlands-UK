@@ -48,17 +48,9 @@ export const navLinks = [
 
 export const heroVideos = [
   {
-    id: 'peeler-i',
-    mp4: '/videos/hero-peeler-i.mp4',
-    webm: '/videos/hero-peeler-i.webm',
-    poster: '/videos/hero-peeler-i.jpg',
-    label: 'MARSHLAND I-shape peeler',
-  },
-  {
-    id: 'peeler-y',
-    mp4: '/videos/hero-peeler-y.mp4',
-    webm: '/videos/hero-peeler-y.webm',
-    poster: '/videos/hero-peeler-y.jpg',
-    label: 'MARSHLAND Y-shape peeler',
+    id: 'marshland',
+    mp4: '/videos/marshland.mp4',
+    poster: '/videos/marshland.jpg',
+    label: 'MARSHLAND',
   },
 ] as const;

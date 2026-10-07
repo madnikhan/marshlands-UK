@@ -2,7 +2,7 @@
 interface HeroVideo {
   id: string;
   mp4: string;
-  webm: string;
+  webm?: string;
   poster: string;
   label: string;
 }
@@ -30,7 +30,7 @@ const firstPoster = videos[0]?.poster ?? '';
         aria-label={video.label}
       >
         <source src={video.mp4} type="video/mp4" />
-        <source src={video.webm} type="video/webm" />
+        {video.webm ? <source src={video.webm} type="video/webm" /> : null}
       </video>
     ))
   }
