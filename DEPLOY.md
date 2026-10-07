@@ -1,18 +1,18 @@
-# Deploying MARSHLAND (marshlands.co.uk)
+# Deploying MARSHLAND on IONOS
 
-This project builds to a static `dist/` folder. Any static host works.
+This project builds to a static `dist/` folder (HTML, CSS, JS, images, videos) plus `send-mail.php` for forms. IONOS webspace hosts that output — no Node or Vercel required on the server.
 
-## 1. Configure form delivery
+## Hosting map
 
-1. Create a free access key at [https://web3forms.com](https://web3forms.com).
-2. Set the notification emails to `atiq@marshlands.co.uk` and `qasim@marshlands.co.uk`.
-3. Copy `.env.example` to `.env` (local) or add the variable in your host dashboard:
+| Item | Value |
+| --- | --- |
+| Domain | `marshlands.co.uk` (SSL assigned) |
+| Webspace directory | `/marshlands` |
+| SFTP host | `home385931680.1and1-data.host` |
+| SFTP user | `u66045375` |
+| Form inbox | `info@marshlands.co.uk` |
 
-```bash
-PUBLIC_WEB3FORMS_ACCESS_KEY=your_access_key_here
-```
-
-## 2. Build locally
+## 1. Build locally
 
 Requires Node.js 22.12+.
 
@@ -21,47 +21,52 @@ npm install
 npm run build
 ```
 
-Preview the production build:
+**Do not open `dist/index.html` as a file in the browser.** Paths like `/images/...` and `/_astro/...` only work over HTTP (local preview or the live domain).
+
+Preview the static site correctly:
 
 ```bash
 npm run preview
+# or
+npm run serve:dist
 ```
 
-## 3. Deploy options
+Then open the URL shown in the terminal (usually `http://localhost:4321`).
 
-### Cloudflare Pages (recommended)
+Production files are in `dist/`. Confirm these are present:
 
-1. Connect the Git repository (or upload `dist/`).
-2. Build command: `npm run build`
-3. Output directory: `dist`
-4. Environment variable: `PUBLIC_WEB3FORMS_ACCESS_KEY`
-5. Node version: `22`
+- `index.html` and page folders (`about/`, `contact/`, …)
+- `send-mail.php`
+- `.htaccess`
+- `videos/`, `images/`, `_astro/`
 
-### Netlify
+## 2. Upload to IONOS
 
-1. Build command: `npm run build`
-2. Publish directory: `dist`
-3. Add `PUBLIC_WEB3FORMS_ACCESS_KEY` under Site settings → Environment variables
+1. Connect with SFTP (FileZilla, Cyberduck, or IONOS File Manager) using the host and user above.
+2. Open webspace directory `/marshlands`.
+3. Upload **the contents of `dist/`** into `/marshlands` (not the `dist` folder itself).
+4. Overwrite existing files when updating.
+5. Ensure `send-mail.php` and `.htaccess` are on the server (dotfiles can be hidden — show them in the FTP client).
 
-### Vercel
+No environment variables are required for forms. PHP `mail()` sends to `info@marshlands.co.uk`.
 
-1. Framework preset: Astro (or Other)
-2. Build command: `npm run build`
-3. Output directory: `dist`
-4. Add `PUBLIC_WEB3FORMS_ACCESS_KEY` in Project → Settings → Environment Variables
+## 3. After upload
 
-## 4. Point the domain
+- Visit `https://marshlands.co.uk` and `https://www.marshlands.co.uk`
+- Submit a test Contact and Partner enquiry; confirm mail arrives at `info@marshlands.co.uk`
+- Check Amazon, mailto, and phone links
+- If forms fail, ask IONOS support to confirm PHP `mail()` is enabled for the package and that `info@marshlands.co.uk` exists on the same account
 
-For `www.marshlands.co.uk` / `marshlands.co.uk`:
+## 4. Updating the site later
 
-1. In your domain registrar DNS, add the records supplied by your host (usually CNAME for `www` and A/ALIAS for apex).
-2. Enable HTTPS in the host dashboard.
-3. Prefer redirecting apex → `www` (or the reverse) so there is one canonical URL.
+```bash
+npm run build
+```
 
-## 5. Post-launch checklist
+Then re-upload changed files from `dist/` (or the full folder) to `/marshlands`.
 
-- [ ] Forms submit successfully and notify both directors
-- [ ] Amazon store links open correctly
-- [ ] Phone and mailto links work on mobile
-- [ ] Add registered office address / Companies House number to the footer when the client provides them
-- [ ] Replace product placeholders and add new SKUs in `src/data/products.ts` as the catalogue grows
+## Notes
+
+- Astro remains the source project; only `dist/` goes on IONOS.
+- Contact and Partner forms POST to `/send-mail.php` (same origin).
+- Prefer one canonical host (apex or `www`) via IONOS domain settings / redirects.

@@ -256,7 +256,8 @@ p:last-child {
   color: var(--ink-soft);
 }
 
-.reveal {
+/* Visible by default; only hide when JS is active so content never stays blank */
+.js .reveal {
   opacity: 0;
   transform: perspective(1400px) translate3d(0, 56px, -80px) rotateX(6deg) scale(0.94);
   filter: blur(6px);
@@ -268,13 +269,13 @@ p:last-child {
   will-change: opacity, transform, filter;
 }
 
-.reveal.is-visible {
+.js .reveal.is-visible {
   opacity: 1;
   transform: perspective(1400px) translate3d(0, 0, 0) rotateX(0deg) scale(1);
   filter: blur(0);
 }
 
-.reveal--fast {
+.js .reveal--fast {
   transform: translate3d(0, 18px, 0);
   filter: blur(2px);
   transition:
@@ -283,7 +284,7 @@ p:last-child {
     filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.reveal--fast.is-visible {
+.js .reveal--fast.is-visible {
   transform: translate3d(0, 0, 0);
   filter: blur(0);
 }

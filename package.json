@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "serve:dist": "astro preview --open",
     "astro": "astro"
   },
   "dependencies": {

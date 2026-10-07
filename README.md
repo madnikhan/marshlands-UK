@@ -5,8 +5,8 @@ Professional static marketing site for **MARSHLAND** (Al-Razaq UK Pvt Ltd) — U
 ## Stack
 
 - [Astro](https://astro.build) + TypeScript
-- Static HTML/CSS/JS output
-- Web3Forms for Contact and Partner enquiry forms
+- Static HTML/CSS/JS output for IONOS webspace
+- PHP `send-mail.php` for Contact and Partner forms (`info@marshlands.co.uk`)
 
 ## Pages
 
@@ -22,7 +22,6 @@ Professional static marketing site for **MARSHLAND** (Al-Razaq UK Pvt Ltd) — U
 Node.js 22.12+ required.
 
 ```bash
-cp .env.example .env
 npm install
 npm run dev
 ```
@@ -33,6 +32,8 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+Upload the contents of `dist/` to IONOS webspace `/marshlands`. See [DEPLOY.md](DEPLOY.md).
 
 ## Content updates
 

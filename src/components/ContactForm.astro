@@ -1,11 +1,5 @@
----
-const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
----
-
-<form class="form js-form" method="POST" action="https://api.web3forms.com/submit" novalidate>
-  <input type="hidden" name="access_key" value={accessKey} />
-  <input type="hidden" name="subject" value="MARSHLAND website contact" />
-  <input type="hidden" name="from_name" value="MARSHLAND Website" />
+<form class="form js-form" method="POST" action="/send-mail.php" novalidate>
+  <input type="hidden" name="form_type" value="contact" />
   <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" />
 
   <div class="form-row form-row--2">
@@ -44,8 +38,8 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
   </label>
 
   <label>
-    Subject
-    <input type="text" name="topic" required placeholder="How can we help?" />
+    Main Product Categories
+    <input type="text" name="topic" required placeholder="Tell us what you manufacture or supply" />
   </label>
 
   <label>
@@ -55,28 +49,11 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
 
   <button class="btn btn--primary" type="submit">Send message</button>
   <p class="form-status" aria-live="polite"></p>
-  {
-    !accessKey && (
-      <p class="form-note">
-        Form delivery requires a Web3Forms access key. Add <code>PUBLIC_WEB3FORMS_ACCESS_KEY</code> to
-        your environment before go-live.
-      </p>
-    )
-  }
 </form>
 
 <style>
   .botcheck {
     display: none !important;
-  }
-
-  .form-note {
-    font-size: 0.85rem;
-    color: var(--ink-soft);
-  }
-
-  code {
-    font-size: 0.85em;
   }
 </style>
 
@@ -90,18 +67,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const status = form.querySelector('.form-status') as HTMLElement | null;
-        const accessKey = (form.querySelector('input[name="access_key"]') as HTMLInputElement | null)
-          ?.value;
         const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
-
-        if (!accessKey) {
-          if (status) {
-            status.textContent =
-              'Form is not configured yet. Please email info@marshlands.co.uk or sourcing@marshlands.co.uk.';
-            status.className = 'form-status form-status--error';
-          }
-          return;
-        }
 
         if (submitBtn) submitBtn.disabled = true;
         if (status) {
