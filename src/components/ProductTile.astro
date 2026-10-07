@@ -20,7 +20,6 @@ const { product } = Astro.props;
       <img src={product.image} alt={product.name} loading="lazy" decoding="async" />
     </div>
     <div class="tile-body">
-      <span class="eyebrow">{product.category}</span>
       <h3>{product.name}</h3>
       <p>{product.shortDescription}</p>
       <span class="tile-cta">Buy on Amazon</span>

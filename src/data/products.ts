@@ -12,45 +12,10 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    id: 'salt-pepper-grinder',
-    name: 'Salt & Pepper Grinder Set',
-    shortDescription:
-      'Everyday function. Refined design. A distinctive acacia wood and marble grinder set combining practical everyday seasoning with an elegant kitchen presence.',
-    features: [
-      'Acacia wood bodies with contrasting marble tops',
-      'Adjustable grind for fine or coarse seasoning',
-      'Refillable design for salt, peppercorns and spices',
-      'MARSHLAND engraved detailing',
-    ],
-    amazonUrl:
-      'https://www.amazon.co.uk/stores/page/B68DE6A8-92F3-42E1-9056-EB70FE76934C',
-    image: '/images/products/salt-pepper-grinder.jpg',
-    status: 'live',
-    category: 'Kitchen Tools',
-  },
-  {
-    id: 'tin-opener',
-    name: 'Heavy-Duty Tin Opener',
-    shortDescription:
-      'Built to make everyday tasks easier. A robust manual tin opener combining a reliable stainless-steel cutting mechanism with comfortable soft-grip handles and a convenient magnetic lid lift.',
-    features: [
-      'Stainless-steel cutting mechanism',
-      'Ergonomic soft-grip handles',
-      'Magnetic lid lift for easier handling',
-      'Integrated bottle opener',
-    ],
-    amazonUrl:
-      'https://www.amazon.co.uk/stores/page/C6EE6881-119C-44C9-ACB7-B8E01A8B7B9D',
-    image: '/images/products/tin-opener.jpg',
-    rating: '4.1',
-    status: 'live',
-    category: 'Kitchen Tools',
-  },
-  {
     id: 'peeler',
     name: 'Premium Swivel Peeler',
     shortDescription:
-      'Simple. Comfortable. Precise. A sharp stainless-steel swivel peeler designed for quick, controlled food preparation, with a comfortable non-slip grip for everyday use.',
+      'Sharp, rust-resistant stainless steel with a comfortable non-slip grip for quick, precise and effortless food preparation.',
     features: [
       'Stainless-steel blade for precise peeling',
       'Ergonomic non-slip grip',
@@ -65,10 +30,28 @@ export const products: Product[] = [
     category: 'Kitchen Tools',
   },
   {
+    id: 'tin-opener',
+    name: 'Heavy-Duty Tin Opener',
+    shortDescription:
+      'A robust manual tin opener with a comfortable soft-grip handle and magnetic lid lift, designed for smooth and effortless everyday use.',
+    features: [
+      'Stainless-steel cutting mechanism',
+      'Ergonomic soft-grip handles',
+      'Magnetic lid lift for easier handling',
+      'Integrated bottle opener',
+    ],
+    amazonUrl:
+      'https://www.amazon.co.uk/stores/page/C6EE6881-119C-44C9-ACB7-B8E01A8B7B9D',
+    image: '/images/products/tin-opener.jpg',
+    rating: '4.1',
+    status: 'live',
+    category: 'Kitchen Tools',
+  },
+  {
     id: 'garlic-press',
     name: 'Heavy-Duty Garlic Press',
     shortDescription:
-      'Less effort. Better preparation. A robust garlic press designed to make everyday food preparation quicker and easier, with efficient crushing and straightforward cleaning.',
+      'Designed for efficient crushing with less effort, easy handling and straightforward cleaning.',
     features: [
       'Designed to crush garlic with less effort',
       'Generous chamber for efficient preparation',
@@ -78,6 +61,23 @@ export const products: Product[] = [
     amazonUrl:
       'https://www.amazon.co.uk/stores/page/D370DC24-E5B4-4819-9257-3BD9EA34C330',
     image: '/images/products/garlic-press.jpg',
+    status: 'live',
+    category: 'Kitchen Tools',
+  },
+  {
+    id: 'salt-pepper-grinder',
+    name: 'Salt & Pepper Grinder Set',
+    shortDescription:
+      'Natural acacia wood and marble come together in a refined grinder set designed for everyday seasoning and an elegant kitchen presence.',
+    features: [
+      'Acacia wood bodies with contrasting marble tops',
+      'Adjustable grind for fine or coarse seasoning',
+      'Refillable design for salt, peppercorns and spices',
+      'MARSHLAND engraved detailing',
+    ],
+    amazonUrl:
+      'https://www.amazon.co.uk/stores/page/B68DE6A8-92F3-42E1-9056-EB70FE76934C',
+    image: '/images/products/salt-pepper-grinder.jpg',
     status: 'live',
     category: 'Kitchen Tools',
   },
