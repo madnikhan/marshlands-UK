@@ -15,7 +15,7 @@ export const company = {
   },
   trust: {
     title: 'British Brand',
-    subtitle: 'Built for the UK market',
+    subtitle: 'Built for the UK, EU & US markets',
   },
   copyright: (year: number) =>
     `© ${year} AL-RAZAQ UK PVT LIMITED. Trading as MARSHLAND. All rights reserved.`,
