@@ -10,14 +10,38 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
 
   <div class="form-row form-row--2">
     <label>
-      Full name
-      <input type="text" name="name" required autocomplete="name" placeholder="Your name" />
+      Company Name
+      <input type="text" name="company" required autocomplete="organization" placeholder="Your company" />
     </label>
     <label>
-      Email
+      Business Email
       <input type="email" name="email" required autocomplete="email" placeholder="you@company.com" />
     </label>
   </div>
+
+  <div class="form-row form-row--2">
+    <label>
+      WhatsApp
+      <input type="tel" name="whatsapp" autocomplete="tel" placeholder="+44 …" />
+    </label>
+    <label>
+      Website
+      <input type="text" name="website" autocomplete="url" placeholder="www.example.com" />
+    </label>
+  </div>
+
+  <label>
+    Partnership Type
+    <select name="partnership_type" required>
+      <option value="">Select an option</option>
+      <option value="Manufacturer / Factory">Manufacturer / Factory</option>
+      <option value="OEM / ODM Partner">OEM / ODM Partner</option>
+      <option value="Supplier">Supplier</option>
+      <option value="Distributor / Wholesaler">Distributor / Wholesaler</option>
+      <option value="Product Development">Product Development</option>
+      <option value="Other">Other</option>
+    </select>
+  </label>
 
   <label>
     Subject
