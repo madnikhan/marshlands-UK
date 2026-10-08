@@ -57,8 +57,8 @@ if ($formType === 'contact') {
     $whatsapp = field('whatsapp');
     $website = field('website');
 
-    if ($company === '' || $topic === '' || $partnershipType === '') {
-        respond(false, 'Please complete all required fields.', 400);
+    if ($company === '' || $website === '' || $topic === '' || $partnershipType === '') {
+        respond(false, 'Please fill in all required fields.', 400);
     }
 
     $subject = 'MARSHLAND website contact: ' . $topic;
@@ -79,7 +79,7 @@ if ($formType === 'contact') {
     $partnershipType = field('partnership_type');
 
     if ($company === '' || $country === '' || $name === '' || $partnershipType === '') {
-        respond(false, 'Please complete all required fields.', 400);
+        respond(false, 'Please fill in all required fields.', 400);
     }
 
     $subject = 'MARSHLAND partnership enquiry: ' . $company;
