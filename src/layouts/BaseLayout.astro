@@ -73,15 +73,13 @@ const ogImage = new URL('/images/logo.png', company.website).toString();
           }
         },
         {
-          threshold: 0.05,
-          rootMargin: '80px 0px 0px 0px',
+          threshold: 0,
+          rootMargin: '120px 0px 0px 0px',
         }
       );
 
       document.querySelectorAll('.reveal').forEach((el, index) => {
-        const isFast = el.classList.contains('reveal--fast');
-        const step = isFast ? 35 : 80;
-        const delay = Math.min(index % 4, 3) * step;
+        const delay = Math.min(index % 4, 3) * 15;
         (el as HTMLElement).style.transitionDelay = `${delay}ms`;
         observer.observe(el);
       });
