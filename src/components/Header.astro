@@ -7,7 +7,13 @@ const pathname = Astro.url.pathname;
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/" aria-label={`${company.brand} home`}>
-      <img src="/images/logo.png" alt={company.brand} width="280" height="46" />
+      <img
+        src="/images/logo.svg"
+        alt={company.brand}
+        width="280"
+        height="37"
+        decoding="async"
+      />
     </a>
 
     <button
@@ -76,6 +82,7 @@ const pathname = Astro.url.pathname;
     max-width: min(42vw, 15rem);
     object-fit: contain;
     object-position: left center;
+    image-rendering: auto;
   }
 
   .primary-nav {
